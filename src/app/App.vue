@@ -5,7 +5,7 @@ import { OrdersPanel } from "../features/orders";
 import { PantryPanel } from "../features/pantry";
 import { KitchenPanel } from "../features/kitchen";
 import { ServicePanel } from "../features/service";
-import { LedgerPanel, ResultOverlay, totals } from "../features/ledger";
+import { LedgerPanel, ResultOverlay, DowntimeLog, totals } from "../features/ledger";
 const { game, toggle, restart } = useSession();
 </script>
 <template>
@@ -93,6 +93,7 @@ const { game, toggle, restart } = useSession();
         <span>✦ 主厨提示</span>{{ game.notice }}
       </div>
       <LedgerPanel :game="game" />
+      <DowntimeLog :game="game" />
       <footer>
         好食材，好火候，好心情。<span
           >午市厨房 / LUNCH RUSH · 180 秒的小小餐厅</span

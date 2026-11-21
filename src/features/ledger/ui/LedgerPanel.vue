@@ -16,6 +16,10 @@ defineProps<{ game: Game }>();
       <small>采购 / 损失</small><b class="red">−¥{{ totals(game).cost }}</b>
     </div>
     <div class="ledger-stat">
+      <small>维修 / 保养</small
+      ><b class="red">−¥{{ totals(game).upkeep }}</b>
+    </div>
+    <div class="ledger-stat">
       <small>成功 / 离店</small
       ><b
         >{{ game.served }} <span class="muted">/ {{ game.missed }}</span></b

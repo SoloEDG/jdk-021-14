@@ -1,5 +1,6 @@
 import type { Game } from "../../../shared/types";
 import { activeOrders } from "../lib/patience";
+import { noteOrderOutcome } from "../../kitchen/model/equipment";
 export function accept(g: Game, id: number) {
   const o = g.orders.find((o) => o.id === id);
   if (o?.status !== "waiting") return;
@@ -21,6 +22,7 @@ export function expire(g: Game) {
         amount: -5,
         kind: "miss",
       });
+      noteOrderOutcome(g, o, "missed");
       g.notice = `${o.guest} 离店，损失 ¥5`;
     }
   }

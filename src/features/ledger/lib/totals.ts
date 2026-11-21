@@ -1,4 +1,5 @@
 import type { Game } from "../../../shared/types";
+
 export function totals(g: Game) {
   return {
     net: g.entries.reduce((s, e) => s + e.amount, 0),
@@ -6,7 +7,12 @@ export function totals(g: Game) {
       .filter((e) => e.kind === "sale")
       .reduce((s, e) => s + e.amount, 0),
     cost: -g.entries
-      .filter((e) => e.amount < 0)
+      .filter(
+        (e) => e.amount < 0 && e.kind !== "repair" && e.kind !== "upkeep",
+      )
+      .reduce((s, e) => s + e.amount, 0),
+    upkeep: -g.entries
+      .filter((e) => e.kind === "repair" || e.kind === "upkeep")
       .reduce((s, e) => s + e.amount, 0),
   };
 }

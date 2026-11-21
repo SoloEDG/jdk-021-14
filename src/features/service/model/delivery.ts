@@ -1,6 +1,7 @@
 import type { Game } from "../../../shared/types";
 import { recipes } from "../../../shared/catalog";
 import { servingQuality, servicePair } from "../lib/freshness";
+import { noteOrderOutcome } from "../../kitchen/model/equipment";
 export function deliver(g: Game) {
   const { dish, order } = servicePair(g);
   if (!dish || dish.stage !== "plated" || !order) {
@@ -35,5 +36,6 @@ export function deliver(g: Game) {
   g.dishes = g.dishes.filter((d) => d.id !== dish.id);
   g.selectedDish = null;
   g.selectedOrder = null;
+  noteOrderOutcome(g, order, "served");
   g.notice = `交付成功 +¥${amount} · 连续交付 ${g.combo} 单`;
 }

@@ -526,6 +526,132 @@ h2 {
 .kitchen-note > .muted {
   font-size: 8px;
 }
+.stove.offline {
+  background: #f2f0ea;
+  border-color: #ddd9cc;
+}
+.stove.booked {
+  border-color: #b9c9a5;
+}
+.locked-flame {
+  color: #b56a52;
+  font-size: 10px;
+  letter-spacing: 1px;
+  animation: none;
+}
+.gauge-row {
+  display: grid;
+  gap: 5px;
+  margin: 9px 0 2px;
+}
+.gauge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 8px;
+  color: #8b9482;
+}
+.gauge > span {
+  width: 26px;
+  text-align: left;
+  flex: none;
+}
+.gauge > small {
+  font-size: 8px;
+  white-space: nowrap;
+}
+.gauge-track {
+  flex: 1;
+  height: 4px;
+  background: #e6e5d9;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.gauge-track i {
+  display: block;
+  height: 100%;
+  transition: width 0.15s linear;
+}
+.gauge-track.heat i {
+  background: linear-gradient(90deg, #9fb48c, #d59a5c 55%, #bf5f45);
+}
+.gauge-track.health i {
+  background: #7f9f70;
+}
+.estimate {
+  font-size: 8px;
+  color: #7f8b73;
+  margin: 4px 2px 8px;
+  min-height: 22px;
+  line-height: 1.5;
+}
+.stove-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+.repair {
+  background: #b8734f;
+}
+.ghost {
+  background: transparent;
+  color: #9c8568;
+  border: 1px dashed #d9cdb8;
+}
+.cancel-booking {
+  font-size: 8px;
+  padding: 5px 6px;
+}
+.downtime-log {
+  margin-top: 22px;
+}
+.downtime-list {
+  display: grid;
+  gap: 8px;
+}
+.downtime-list > article {
+  border: 1px solid #e4e4d8;
+  border-left: 3px solid #c9b58d;
+  border-radius: 6px;
+  background: #fffdf7;
+  padding: 10px 14px;
+  font-size: 10px;
+}
+.downtime-top {
+  display: flex;
+  justify-content: space-between;
+  color: #52664c;
+}
+.downtime-top span {
+  font-size: 9px;
+  color: #99a18b;
+}
+.downtime-list p {
+  margin: 5px 0 0;
+  line-height: 1.6;
+}
+.impact-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 7px;
+}
+.impact-list > span {
+  font-size: 8px;
+  padding: 3px 7px;
+  border-radius: 20px;
+  background: #f0eee3;
+  color: #7c8a6d;
+}
+.impact-list > span.missed {
+  background: #f4e3da;
+  color: #a5634a;
+}
+.impact-list > span.served {
+  background: #e7f0dd;
+  color: #5b7b4d;
+}
 .pill {
   font-size: 9px;
   background: #edf0e5;

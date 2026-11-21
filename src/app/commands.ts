@@ -1,7 +1,15 @@
 import type { Game, Command } from "../shared/types";
 import { accept, expire } from "../features/orders";
 import { prepare, restock } from "../features/pantry";
-import { cook, lift } from "../features/kitchen";
+import {
+  cook,
+  lift,
+  startCooling,
+  startRepair,
+  bookMaintenance,
+  cancelMaintenance,
+} from "../features/kitchen";
+import { maintenanceCost } from "../features/kitchen/lib/heat";
 import { plate, discard, deliver } from "../features/service";
 export function dispatch(g: Game, c: Command) {
   if (!g.running || g.ended) {
@@ -28,6 +36,26 @@ export function dispatch(g: Game, c: Command) {
     case "lift":
       lift(g, c.id);
       break;
+    case "cool": {
+      const s = g.stoves.find((s) => s.id === c.stove);
+      if (s) startCooling(g, s);
+      break;
+    }
+    case "repair": {
+      const s = g.stoves.find((s) => s.id === c.stove);
+      if (s) startRepair(g, s);
+      break;
+    }
+    case "maintain": {
+      const s = g.stoves.find((s) => s.id === c.stove);
+      if (s) bookMaintenance(g, s, maintenanceCost(s));
+      break;
+    }
+    case "cancel-maintenance": {
+      const s = g.stoves.find((s) => s.id === c.stove);
+      if (s) cancelMaintenance(g, s);
+      break;
+    }
     case "plate":
       plate(g, c.id);
       break;
@@ -37,6 +65,7 @@ export function dispatch(g: Game, c: Command) {
       break;
     case "serve":
       deliver(g);
+      // 上菜后立即结算订单超时，保证同一刻只落到一个去向。
       expire(g);
       break;
     case "discard":
